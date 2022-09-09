@@ -11,21 +11,24 @@ int main(int argc, char** argv)
 #endif
     std::srand(static_cast<uint32_t>(std::time(0)));
 
-    Settings s;
+    WorldSettings s;
 
     World w = World(s);
     auto b = w.CreateBox(1.0f);
 
-    std::cout << "mass: " << b->GetMass() << '\n';
-    std::cout << "moment of inertia: " << b->GetInertia() << '\n';
-    std::cout << "initial position: " << *b->position << '\n';
+    printf("mass: %.4f\n", b->GetMass());
+    printf("moment of inertia: %.4f\n", b->GetInertia());
+    Vec2 pos = b->GetPosition();
+    printf("initial position: %.4f, %.4f\n", pos.x, pos.y);
 
     w.Step(1.0f / 60.0f);
 
-    std::cout << "one step after: " << *b->position << '\n';
+    pos = b->GetPosition();
+    printf("one step after: %.4f, %.4f\n\n", pos.x, pos.y);
 
-    std::cout << *get_closest_point(b, { 0.0f, 10.0f }) << '\n';
-    std::cout << compute_distance(b, { 0.0f, 10.0f }) << '\n';
+    Vec2 closestPoint = get_closest_point(b, Vec2{ 0.0f, 10.0f });
+    printf("%.4f, %.4f\n", closestPoint.x, closestPoint.y);
+    printf("%.4f\n", compute_distance(b, Vec2{ 0.0f, 10.0f }));
 
     return 0;
 }
