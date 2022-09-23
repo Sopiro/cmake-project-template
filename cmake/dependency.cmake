@@ -1,6 +1,6 @@
 ExternalProject_Add(
-    dep_spe
-    GIT_REPOSITORY "https://github.com/Sopiro/SPE.git"
+    dep-muli
+    GIT_REPOSITORY "https://github.com/Sopiro/Muli.git"
     GIT_TAG "master"
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
@@ -12,9 +12,9 @@ ExternalProject_Add(
 )
 
 set(DEP_LIST_DEMO
-    dep_spe
+    dep-muli
 )
 
 set(DEP_LIBS_DEMO
-    spe
+    muli
 )

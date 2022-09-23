@@ -1,7 +1,7 @@
 #include "test/test.h"
 #include <crtdbg.h>
 
-using namespace spe;
+using namespace muli;
 
 int main(int argc, char** argv)
 {
@@ -26,9 +26,9 @@ int main(int argc, char** argv)
     pos = b->GetPosition();
     printf("one step after: %.4f, %.4f\n\n", pos.x, pos.y);
 
-    Vec2 closestPoint = get_closest_point(b, Vec2{ 0.0f, 10.0f });
+    Vec2 closestPoint = GetClosestPoint(b, Vec2{ 0.0f, 10.0f });
     printf("%.4f, %.4f\n", closestPoint.x, closestPoint.y);
-    printf("%.4f\n", compute_distance(b, Vec2{ 0.0f, 10.0f }));
+    printf("%.4f\n", ComputeDistance(b, Vec2{ 0.0f, 10.0f }));
 
     return 0;
 }
