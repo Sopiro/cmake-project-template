@@ -19,8 +19,5 @@ if(MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
-option(BUILD_DEMO_PROJECT OFF)
-set(BUILD_DEMO_PROJECT OFF)
-
-add_subdirectory(extern/muli)
+add_subdirectory(extern)
 add_subdirectory(src)
