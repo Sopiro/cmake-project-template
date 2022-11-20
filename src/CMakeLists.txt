@@ -12,10 +12,12 @@ add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/../include
-    ${DEP_INCLUDE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../extern
 )
 
-target_link_directories(${PROJECT_NAME} PUBLIC ${DEP_LIB_DIR})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${DEP_LIBS_DEMO})
+find_package(OpenMP REQUIRED)
 
-add_dependencies(${PROJECT_NAME} ${DEP_LIST_DEMO})
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    OpenMP::OpenMP_CXX
+    muli
+)

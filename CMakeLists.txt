@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.10)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -10,12 +10,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
-set(DEP_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/install)
-set(DEP_INCLUDE_DIR ${DEP_INSTALL_DIR}/include)
-set(DEP_LIB_DIR ${DEP_INSTALL_DIR}/lib)
-
-include(ExternalProject)
-include(cmake/dependency.cmake)
 
 if(MSVC)
     # default startup project for Visual Studio
@@ -25,4 +19,8 @@ if(MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
+option(BUILD_DEMO_PROJECT OFF)
+set(BUILD_DEMO_PROJECT OFF)
+
+add_subdirectory(extern/muli)
 add_subdirectory(src)
