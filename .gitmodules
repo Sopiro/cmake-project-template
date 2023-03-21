@@ -1,3 +1,6 @@
 [submodule "extern/muli"]
 	path = extern/muli
 	url = http://github.com/sopiro/muli.git
+[submodule "extern/doctest"]
+	path = extern/doctest
+	url = https://github.com/doctest/doctest

@@ -1,10 +1,10 @@
 #include <crtdbg.h>
 
-#include "test/test.h"
+#include "project/project.h"
 
 using namespace muli;
 
-int main(int argc, char** argv)
+int main()
 {
 #if defined(_WIN32)
     // Enable memory-leak reports
@@ -15,17 +15,25 @@ int main(int argc, char** argv)
     WorldSettings s;
 
     World w = World(s);
-    auto b = w.CreateBox(1.0f);
+    RigidBody* b = w.CreateBox(1.0f);
 
     printf("mass: %.4f\n", b->GetMass());
     printf("moment of inertia: %.4f\n", b->GetInertia());
     Vec2 pos = b->GetPosition();
     printf("initial position: %.4f, %.4f\n", pos.x, pos.y);
 
-    w.Step(1.0f / 60.0f);
+    float hz = 3000.0f;
+    float dt = 1.0f / hz;
+    float t = 10.0f;
+
+    for (int i = 0; i < t * hz; ++i)
+    {
+        w.Step(dt);
+    }
 
     pos = b->GetPosition();
-    printf("one step after: %.4f, %.4f\n\n", pos.x, pos.y);
+    printf("%.2f second after: %.4f, %.4f\n", t, pos.x, pos.y);
+    printf("S = 0.5 * G * t^2: %.4f\n\n", 0.5f * 10.0f * t * t);
 
     return 0;
 }

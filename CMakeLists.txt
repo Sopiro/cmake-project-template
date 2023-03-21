@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(CMAKE_CXX_STANDARD 17)
+project(project LANGUAGES CXX VERSION 0.0.1)
 
-project(test LANGUAGES CXX VERSION 0.0.1)
+option(BUILD_UNIT_TEST "Build the unit tests" ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,3 +21,7 @@ endif()
 
 add_subdirectory(extern)
 add_subdirectory(src)
+
+if(BUILD_UNIT_TEST)
+    add_subdirectory(test)
+endif()
