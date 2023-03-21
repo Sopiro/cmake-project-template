@@ -1,4 +1,6 @@
+#if defined(_WIN32)
 #include <crtdbg.h>
+#endif
 
 #include "project/project.h"
 
@@ -12,10 +14,9 @@ int main()
 #endif
     std::srand(static_cast<uint32_t>(std::time(0)));
 
-    WorldSettings s;
-
-    World w = World(s);
-    RigidBody* b = w.CreateBox(1.0f);
+    WorldSettings settings;
+    World world = World(settings);
+    RigidBody* b = world.CreateBox(1.0f);
 
     printf("mass: %.4f\n", b->GetMass());
     printf("moment of inertia: %.4f\n", b->GetInertia());
@@ -28,7 +29,7 @@ int main()
 
     for (int i = 0; i < t * hz; ++i)
     {
-        w.Step(dt);
+        world.Step(dt);
     }
 
     pos = b->GetPosition();
